@@ -7,7 +7,7 @@ provider:
   timeout: 30
   region: ap-northeast-2
 functions:
-  prod:
+  dev:
     handler: src/index.handler
     events:
       - http:
