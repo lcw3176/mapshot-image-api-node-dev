@@ -1,0 +1,15 @@
+service: mapshot-image-lambda-dev
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  memorySize: 4096
+  timeout: 30
+  region: ap-northeast-2
+functions:
+  prod:
+    handler: src/index.handler
+    events:
+      - http:
+        path: /lambda
+        method: get
