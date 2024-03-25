@@ -5,7 +5,7 @@ const axios = require('axios');
 module.exports.handler = async (event, context) => {
 
   const WIDTH = 1000;
-  const domain = "https://api.kmapshot.com";
+  const domain = "https://dev-api.kmapshot.com";
 
   let response_arr = []
   
@@ -164,7 +164,7 @@ module.exports.handler = async (event, context) => {
   return {
     statusCode: 200,
     headers: {
-      'Access-Control-Allow-Origin': 'api.kmapshot.com',
+      'Access-Control-Allow-Origin': 'dev-api.kmapshot.com',
     },
     
     body: JSON.stringify(response_arr)
