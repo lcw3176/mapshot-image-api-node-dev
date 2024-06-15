@@ -96,8 +96,8 @@ module.exports.handler = async (event, context) => {
     }
   }
  
-  let count = 0;
-  let total_count = parseInt(goal_width / WIDTH) * parseInt(goal_width / WIDTH);
+  // let count = 0;
+  // let total_count = parseInt(goal_width / WIDTH) * parseInt(goal_width / WIDTH);
 
   for (let y = 0; y < goal_width; y += WIDTH) {
     for (let x = 0; x < goal_width; x += WIDTH) {
@@ -113,18 +113,12 @@ module.exports.handler = async (event, context) => {
       let gen_uuid = uuidv4();
 
       
-      axios.post(domain + "/image/storage", {
+      await axios.post(domain + "/image/storage", {
         "uuid": gen_uuid,
         "base64EncodedImage": imageBuffer.toString('base64'),
       }, {
         headers: header
-      })
-      .then(function (response) {
-        count++;
-      })
-      .catch(function (error) {
-        count++;
-      });;
+      });
 
     
       let response = {
@@ -146,20 +140,20 @@ module.exports.handler = async (event, context) => {
       process.kill(browserPid)
   }
   
-  function waitForCondition() {
-    return new Promise(resolve => {
-      function checkFlag() {
-        if (total_count === count) {
-          resolve();
-        } else {
-          setTimeout(checkFlag, 100); 
-        }
-      }
-      checkFlag();
-    });
-  }
-
-  await waitForCondition();
+  // function waitForCondition() {
+  //   return new Promise(resolve => {
+  //     function checkFlag() {
+  //       if (total_count === count) {
+  //         resolve();
+  //       } else {
+  //         setTimeout(checkFlag, 100); 
+  //       }
+  //     }
+  //     checkFlag();
+  //   });
+  // }
+  // 
+  // await waitForCondition();
   
   return {
     statusCode: 200,
