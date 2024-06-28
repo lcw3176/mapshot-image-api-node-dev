@@ -12,6 +12,7 @@ exports.handler = awslambda.streamifyResponse(
     let lat = event.queryStringParameters.lat;
     let level = event.queryStringParameters.level;
     let layerMode = event.queryStringParameters.layerMode;
+    let noLabel = event.queryStringParameters.noLabel;
 
     let goal_width;
 
@@ -82,7 +83,8 @@ exports.handler = awslambda.streamifyResponse(
       + `&level=` + level
       + `&lng=` + lng
       + `&type=` + type
-      + `&companyType=` + companyType);
+      + `&companyType=` + companyType
+      + `&noLabel=` + noLabel);
 
     await page.waitForSelector('#checker_true');
 
