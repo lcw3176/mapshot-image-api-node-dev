@@ -36,16 +36,16 @@ exports.handler = awslambda.streamifyResponse(
     } else { // 구글
       switch (level) {
         case '1':
-          goal_width = 6000;
+          goal_width = 5500;
           break;
         case '2':
-          goal_width = 5000;
+          goal_width = 4500;
           break;
         case '5':
-          goal_width = 6000;
+          goal_width = 5500;
           break;
         case '10':
-          goal_width = 6000;
+          goal_width = 5500;
           break;
         default:
           goal_width = 0;
@@ -100,7 +100,7 @@ exports.handler = awslambda.streamifyResponse(
     if (browserPid) {
       process.kill(browserPid)
     }
-    
+
   }
 );
 
