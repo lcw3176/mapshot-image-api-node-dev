@@ -4,6 +4,19 @@ const chromium = require("@sparticuz/chromium");
 exports.handler = awslambda.streamifyResponse(
   async (event, responseStream, context) => {
 
+    let token = typeof event.queryStringParameters.AUTH_TOKEN === "undefined" ? null : event.queryStringParameters.AUTH_TOKEN;
+
+    if(token === null){
+      return {
+        statusCode: 400
+      }
+    }
+
+    const header = {
+      'AUTH_TOKEN': token
+    }
+  
+    
     const domain = "https://dev-api.kmapshot.com";
 
     let type = event.queryStringParameters.type;
@@ -76,7 +89,8 @@ exports.handler = awslambda.streamifyResponse(
     });
 
     const page = await browser.newPage();
-
+    await page.setExtraHTTPHeaders(header);
+    
     await page.goto(domain + `/image/template/` + companyType + `?`
       + `layerMode=` + layerMode
       + `&lat=` + lat
