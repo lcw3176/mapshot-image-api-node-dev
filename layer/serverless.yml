@@ -1,0 +1,16 @@
+service: layer
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: dev
+  memorySize: 128
+  timeout: 10
+  region: ap-northeast-2
+functions:
+  dev:
+    handler: src/index.handler
+    events:
+      - http:
+          path: /
+          method: get
