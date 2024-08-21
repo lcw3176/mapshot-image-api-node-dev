@@ -20,7 +20,7 @@ jobs:
     - name: serverless deploy
       uses: serverless/github-action@v3.2
       with:
-        args: -c "cd ./map && serverless deploy"
+        args: -c "cd ./base_map && serverless deploy"
         entrypoint: /bin/sh
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
